@@ -1,8 +1,8 @@
 fx_version 'cerulean'
 game      'gta5'
 
-name        'esx_jobdeposit'
-description 'ESX Fraktions-Einzahlung an konfigurierbaren Punkten'
+
+description 'ESX Jobdeposit For ESX'
 version     '1.0.0'
 author      'LEXIKON'
 
