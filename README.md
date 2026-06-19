@@ -1,66 +1,66 @@
 # esx_jobdeposit
 
-ESX-Script für Fraktions-Einzahlungen. Spieler können an festgelegten Punkten Bargeld für ihren Job einzahlen – z. B. Werkstattkasse, Polizei-Fonds oder ähnliches.
+ESX script for faction deposits. Players can deposit cash for their job at configured locations – e.g. workshop funds, police budget, or similar.
 
 ## Features
 
-- Einzahlungspunkte per Config definierbar (Name, Job, Koordinaten)
-- Marker mit einstellbarer Größe, Farbe und Reichweite
-- Dialog-Eingabe über `esx_menu_dialog`
-- Job-Mitglieder werden über die Einzahlung informiert
-- Lokalisierung: Deutsch (`de`) und Englisch (`en`)
-- Help-Notify: ESX TextUI (Standard) oder Custom-Resource wählbar
+- Deposit points configurable via config (name, job, coordinates)
+- Marker with adjustable size, color, and range
+- Amount input via `esx_menu_dialog`
+- Job members are notified about deposits
+- Localization: German (`de`) and English (`en`)
+- Help notify: ESX TextUI (default) or custom resource
 
-## Abhängigkeiten
+## Dependencies
 
 - [es_extended](https://github.com/esx-framework/esx_core)
 - [esx_menu_dialog](https://github.com/esx-framework/esx_core)
-- Optional: ein Help-Notify-Script nur bei `type = 'custom'`
+- Optional: a help notify script only when `type = 'custom'`
 
 ## Installation
 
-1. Ordner `esx_jobdeposit` in deinen `resources`-Ordner legen
-2. In `server.cfg` eintragen:
+1. Place the `esx_jobdeposit` folder in your `resources` directory
+2. Add to your `server.cfg`:
    ```
    ensure esx_jobdeposit
    ```
-3. `config.lua` anpassen (Punkte, Marker, Sprache, Help-Notify)
-4. Server neu starten
+3. Adjust `config.lua` (points, marker, locale, help notify)
+4. Restart the server
 
-## Konfiguration
+## Configuration
 
-### Sprache
+### Locale
 
 ```lua
 Config.Locale = 'de' -- de | en
 ```
 
-Neue Texte in `locales/de.lua` und `locales/en.lua` pflegen. Im Code mit `_U('key')` oder `_U('key', arg1, arg2)` verwenden.
+Add new strings in `locales/de.lua` and `locales/en.lua`. Use them in code with `_U('key')` or `_U('key', arg1, arg2)`.
 
-### Help-Notify
+### Help Notify
 
-Zwei Modi – kein Resource- oder Export-Name nötig, wenn du ESX nutzt:
+Two modes – no resource or export name required when using ESX:
 
 ```lua
 Config.HelpNotify = {
     type = 'esx', -- 'esx' | 'custom'
 
-    -- nur bei type = 'custom' relevant:
+    -- only relevant when type = 'custom':
     resource = 'soh_helpnotify',
     export   = 'showHelpNotification',
 }
 ```
 
-| Modus | Beschreibung |
-|-------|--------------|
-| `esx` | Standard. Nutzt die eingebaute ESX TextUI (`ESX.TextUI` / `HideUI`). Keine extra Resource nötig. |
-| `custom` | Eigenes Help-Notify-Script über Resource-Name und Export. |
+| Mode | Description |
+|------|-------------|
+| `esx` | Default. Uses the built-in ESX TextUI (`ESX.TextUI` / `HideUI`). No extra resource needed. |
+| `custom` | Your own help notify script via resource name and export. |
 
-Bei `type = 'esx'` (oder einem ungültigen Wert) erkennt das Script automatisch, welche ESX-TextUI verfügbar ist. Es muss nichts weiter eingestellt werden.
+With `type = 'esx'` (or an invalid value), the script automatically detects which ESX TextUI is available. No further setup required.
 
-Bei `type = 'custom'` muss die Help-Notify-Resource laufen und `resource` + `export` in der Config passen.
+With `type = 'custom'`, the help notify resource must be running and `resource` + `export` in the config must match.
 
-### Einzahlungspunkte
+### Deposit Points
 
 ```lua
 Config.EinzahlPunkte = {
@@ -68,9 +68,9 @@ Config.EinzahlPunkte = {
 }
 ```
 
-- `Name` – Anzeigename im Menü und in Benachrichtigungen
-- `job` – ESX-Jobname; nur Mitglieder dieses Jobs erhalten die Info-Nachricht
-- `coords` – Position des Markers
+- `Name` – display name in the menu and notifications
+- `job` – ESX job name; only members of this job receive the info message
+- `coords` – marker position
 
 ### Marker
 
@@ -84,14 +84,14 @@ Config.Marker = {
 }
 ```
 
-## Nutzung ingame
+## In-Game Usage
 
-1. Zum Marker laufen
-2. `E` drücken
-3. Betrag eingeben und bestätigen
+1. Walk to the marker
+2. Press `E`
+3. Enter the amount and confirm
 
-Das Geld wird vom Bargeld des Spielers abgezogen. Der Einzahler und alle online Job-Mitglieder erhalten eine Benachrichtigung.
+The money is deducted from the player's cash. The depositor and all online job members receive a notification.
 
-## Lizenz
+## License
 
-Frei nutzbar. Anpassungen und Weitergabe erlaubt.
+Free to use. Modifications and redistribution allowed.
